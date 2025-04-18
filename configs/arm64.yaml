@@ -1,0 +1,12 @@
+device: "mps"
+model_name: "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+torch_dtype: "float16"
+freeze_layers: 28
+warmup_steps: 20
+test_steps: 40
+ppo_epochs: 1
+learning_rate: 5e-4
+gamma: 0.95
+gae_lambda: 0.98
+batch_size: 1
+seed: 42

@@ -1,0 +1,9 @@
+FROM nvidia/cuda:12.1.0-cudnn8-devel-ubuntu22.04
+RUN apt-get update && apt-get install -y python3.10 python3-pip git
+RUN pip install torch==2.2.1+cu121 transformers==4.40.0 pandas==2.2.1 ...
+WORKDIR /workspace
+COPY src/ ./src/
+COPY configs/ ./configs/
+COPY scripts/ ./scripts/
+CMD ["python", "src/run_demo.py", "--config", "configs/cuda.yaml"]
+#configs/cuda.yaml -> device: "cuda"

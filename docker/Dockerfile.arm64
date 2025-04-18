@@ -1,0 +1,12 @@
+FROM --platform=linux/arm64 python:3.10-slim-bullseye
+RUN apt-get update && apt-get install -y git curl
+RUN pip install --no-cache-dir torch==2.2.1 \
+        transformers==4.40.0 accelerate==0.28.0 \
+        datasets==2.18.0 pandas==2.2.1 yfinance==0.2.37 \
+        matplotlib==3.8.0 seaborn==0.13.0 pyyaml==6.0.1 \
+        gymnasium==0.29.1 ta==0.10.2
+WORKDIR /workspace
+COPY src/ ./src/
+COPY configs/ ./configs/
+COPY scripts/ ./scripts/
+CMD ["python", "src/run_demo.py", "--config", "configs/arm64.yaml"]
